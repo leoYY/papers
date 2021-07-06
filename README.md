@@ -1,6 +1,10 @@
 # papers
 use to keep some papers 
 
+follow
+[Thomas Neumann](https://scholar.google.com/citations?hl=zh-CN&user=xSDfDpsAAAAJ&view_op=list_works&sortby=pubdate)  
+
+
 # Query Execution
 
 ## Operator Algo

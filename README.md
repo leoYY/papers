@@ -26,4 +26,8 @@ follow
 # Resource Scheduler
 [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  
 
+# Self-driving
+
+[Self-Driving Database Management Systems](https://www.pdl.cmu.edu/PDL-FTP/Database/p42-pavlo-cidr17.pdf)  
+
 # Publish Index

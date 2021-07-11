@@ -4,6 +4,8 @@ use to keep some papers
 follow  
 [Thomas Neumann](https://scholar.google.de/citations?hl=zh_CN&user=xSDfDpsAAAAJ&view_op=list_works&sortby=pubdate)  
 [Marcin Żukowski](https://scholar.google.com/citations?hl=zh-CN&user=F-TSpooAAAAJ&view_op=list_works&sortby=pubdate)  
+[Andy Pavlo](https://scholar.google.com/citations?hl=zh-CN&user=u1UDm4wAAAAJ&view_op=list_works&sortby=pubdate)  
+[Peter Boncz](https://scholar.google.com/citations?hl=zh-CN&user=DCIZE1kAAAAJ&view_op=list_works&sortby=pubdate)
 
 
 # Query Optimizer

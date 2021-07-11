@@ -6,6 +6,12 @@ follow
 [Marcin Żukowski](https://scholar.google.com/citations?hl=zh-CN&user=F-TSpooAAAAJ&view_op=list_works&sortby=pubdate)  
 
 
+# Query Optimizer
+
+## Cost model
+
+[Orca: A Modular Query Optimizer Architecture for Big Data](https://15721.courses.cs.cmu.edu/spring2016/papers/p337-soliman.pdf)
+[优化器cost模型验证 Testing the accuracy of query optimizers](https://databasescience.files.wordpress.com/2013/01/taqo.pdf)
 
 # Query Execution
 

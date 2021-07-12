@@ -17,6 +17,9 @@ follow
 
 # Query Execution
 
+## Query Execution model
+Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
+
 ## Operator Algo
 [Building Advanced SQL Analytics From Low-Level Plan Operators](https://dl.acm.org/doi/pdf/10.1145/3448016.3457288)   
 [Accelerating Queries with Group-By and Join by Groupjoin](http://www.vldb.org/pvldb/vol4/p843-moerkotte.pdf)  
@@ -29,5 +32,10 @@ follow
 # Self-driving
 
 [Self-Driving Database Management Systems](https://www.pdl.cmu.edu/PDL-FTP/Database/p42-pavlo-cidr17.pdf)  
+
+# Compute Archtecture
+
+[What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)  
+
 
 # Publish Index

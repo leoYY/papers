@@ -26,6 +26,12 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 [Main-Memory Hash Joins on Multi-Core CPUs: Tuning to the Underlying Hardware](https://15721.courses.cs.cmu.edu/spring2017/papers/18-hashjoins/balkesen-icde2013.pdf)   
 [Towards Multi-way Join Aware Optimizer in SAP HANA](http://www.vldb.org/pvldb/vol13/p3019-wi.pdf)
 
+### Window Operator 
+[Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   
+
+### Join
+[To Partition, or Not to Partition, That is the Join Question in a Real System](https://dl.acm.org/doi/abs/10.1145/3448016.3452831)  
+
 # Resource Scheduler
 [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  
 

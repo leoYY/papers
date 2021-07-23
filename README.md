@@ -28,6 +28,7 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 
 ### Window Operator 
 [Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   
+[Optimization of Analytic Window Functions](http://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf)   
 
 ### Join
 [To Partition, or Not to Partition, That is the Join Question in a Real System](https://dl.acm.org/doi/abs/10.1145/3448016.3452831)  

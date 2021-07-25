@@ -42,11 +42,11 @@
 #### Low-Level Plan Operator
 
 核心思路在于对于sort，partition，merge等主要负责数据的物化，改变数据属性的逻辑，抽象为Transform；partition/sort/merge/combine/scan；  
-对于实际负责基于物化结果数据进行计算的，抽象为Compute；Window/Hash-Agg/Order-Agg；
+对于实际负责基于物化结果数据进行计算的，抽象为Compute；Window/Hash-Agg/Order-Agg； 
+
+![img](https://github.com/leoYY/papers/blob/main/img/low-level_plan_operators.png)  
 
 并且算子间的交互不再局限于一种形式，同时存在tuple-by-tuple， 或者 物化后的buffer；  
-
-
 
 #### Plan Tree => DAG
 

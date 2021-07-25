@@ -46,17 +46,102 @@
 
 ![img](https://github.com/leoYY/papers/blob/main/img/low-level_plan_operators.png)  
 
-并且算子间的交互不再局限于一种形式，同时存在tuple-by-tuple， 或者 物化后的buffer；  
+算子间的交互不再局限于一种形式，同时存在tuple-by-tuple， 或者 物化后的buffer，如Sort的input是Buffer，可以减少输出的物化开销。  
+
+可以看到，对于Order-Agg，Window等算子，不再内部进行数据的物化，完全依赖外部物化好的结果，input处采用buffer。  
 
 #### Plan Tree => DAG
 
+![img](https://github.com/leoYY/papers/blob/main/img/LOLEPOPS-DAG.png)   
 
+整个Plan Tree => DAG的转变，从整个图中可以看到，自左向右，
+首先SQL采用关系代数的方式表达， 对于Agg的计算会进行拆解，每个计算表达式通过 包含了 ARG/KEY/ORD 三个属性。
 
-### 核心难点
+对于median 需要采用sort-AGG实现，因此 ORD = a ，avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数据计算公式中，需要统计总数可以进行表达式级别的复用。  
+另外就是ANY，这里面的ANY更多的是想进行去重，无实际含义，主要是用于算 Sum-Distinct的 转换成了group by d，c 后进行计算。  
+
+从整个图上的步骤可以看到， 对于表达式通过类似的方式拆分，得到了一张DAG图；
+
+![img](https://github.com/leoYY/papers/blob/main/img/LOLEPOP_DAG_algo.png)  
+
+文中将整个算法过程也总结归纳成5步骤：  
+1.  增加combine节点，进行多路的结果关联，相同组的数据合并；  
+2.  根据表达式公式的特点，进行计算node的生成；  
+3.  根据data properties demand，添加transform node进行数据buffer的准备处理；  
+4.  处理DAG图的上下游；  
+5.  DAG图的优化；
+
+关于DAG图的优化方面，一方面对于一些比不要的计算优化，如有包含关系的sort key，以及多余的combine(groupingSets中)，进行图复杂度的简化rewrite；
+另外一方面，对于算子算法本身的优化，如indirect or inplace sort，不过本身选择的策略并没有详细讨论。  
+
+这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，尽可能保持cache友好。
+
+#### 一些更复杂的例子
+
+文中接下来给了5个更具体复杂一些的例子，
+
+核心主要是：   
+
+Eample 1的扩展groupingSet，通过首先计算最长keys，然后结果计算其他keys，计算结果复用，同时由于三个hashAgg的结果不存在join上的情况，combine同时可以优化成union all；  
+Eample 2的更多是对于sort or hash agg方式的选择；  
+Eample 3，比较特殊的在于进一步合并了topN算子，对于本身window计算物化后的有序数组，进一步sort 提供limit，__这里面我认为topN的算法，可以先进行分割，取topN后，则对N排序，会更快一些__ 
+Eample 4/5，更多是组合window 与 order-Agg来实现比较复杂的统计逻辑；
+
+最终同时给出一个API接口，可以比较简单的描述这种依赖关系的统计计算；  
+
+```
+def planMSSD ( arg , key , ord ):
+    f = WindowFrame ( Rows , CurrentRow , Following (1))
+    lead = plan ( LEAD , arg , key , ord , f )
+    ssd = plan ( power ( sub ( lead , arg ) , 2))
+    sum = plan ( SUM , ssd , key )
+    cnt = plan ( COUNT , ssd , key )
+    res = plan ( div ( sum , nullif ( sub ( cnt , 1) , 0)))
+    return res
+```
+
+可以看到，表达式核心由arg，key，ord来标识；
 
 ### 实现考虑
 
+#### DAG in Producer-Consumer Pattern
+
+umbra 典型的compiled系统，采用的producer/consumer的模型。
+相比原有producer/consumer模式最大的区别主要体现在：
+1. 结果复用下，parent node 会依次调用多个children的consumer；
+2. 同时对于transform节点，input为buffer的情况下，不需要consumer；
+
+话外：  
+对于compiled模型下，可以看到join的过程就是forloop下lookup并继续进行下一步计算，这块跟vectorized思路是完全相反的。  
+
+#### 内存结构 Tuple Buffer；
+
+这里关于Tuple Buffer介绍主要考虑几点：
+1. 通过chunk list的方式，无法预估数据的情况下，减少reallocate开销；
+2. 虽然是列存系统，但是对于物化结果采用行存的方式，对于 in-place sort有比较好的效果；
+
+对于indirect sort，采用premultation vector，原理上与prefix-Sort有类似，不过文中考虑的更多是在于实际计算过程中的比较，因此会存全key的方式。这样带来更大的排序代价，但是提升计算的cache友好。  
+
+最终通过iterator的模式，来屏蔽访问的具体内存结构。 
+
+#### 算子的实现
+
+Window的采用Segment Trees计算，对同一物化结果进行反复计算，具体这部分实现参考[Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/abs/10.14778/2794367.2794375)   
+
+另外对于HashAgg，会存在partial-Agg的逻辑，partial阶段会根据下游并发的分桶进行partial-agg，每个写一个chunk中，最后会concat整个chunk发给下一个线程进行计算。  
+这里面主要涉及到 umbra的线程模型，从HashAgg的逻辑来看，会存在类似localExchange的方式进行线程间的通信，文中使用Shuffle来描述这个过程。  
+
+对于partition算子，会存在显示的shuffle调用。对于需要in-place modified情况，会compact chunk lists，该做法尽可能减少后续算子的代价，。    
+
+在整片文章中，多次提到thread-local buffer，感觉更多是对于算子单线程内管理的内存buffer，在需要partition的时候，存在shuffle给其他线程的情况。  
+
 ## 效果：结果怎么样  
 
+#### 效果方案
+
+整个文章的case设计还是比较精细的，每个case均有明确的优化点来对比HyPer。
+
 ## 总结   
+
+
 

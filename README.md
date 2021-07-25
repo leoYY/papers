@@ -23,15 +23,21 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 ## Operator Algo
 [Building Advanced SQL Analytics From Low-Level Plan Operators](https://dl.acm.org/doi/pdf/10.1145/3448016.3457288)   
 [Accelerating Queries with Group-By and Join by Groupjoin](http://www.vldb.org/pvldb/vol4/p843-moerkotte.pdf)  
-[Main-Memory Hash Joins on Multi-Core CPUs: Tuning to the Underlying Hardware](https://15721.courses.cs.cmu.edu/spring2017/papers/18-hashjoins/balkesen-icde2013.pdf)   
-[Towards Multi-way Join Aware Optimizer in SAP HANA](http://www.vldb.org/pvldb/vol13/p3019-wi.pdf)
+
+### Aggregate Operator
+
 
 ### Window Operator 
 [Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   
-[Optimization of Analytic Window Functions](http://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf)   
+[Optimization of Analytic Window Functions](http://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf)    
+[Incremental Computation of Common Windowed Holistic Aggregates](https://research.tableau.com/sites/default/files/p1221-wesley.pdf)   
 
-### Join
+### Join Operator
 [To Partition, or Not to Partition, That is the Join Question in a Real System](https://dl.acm.org/doi/abs/10.1145/3448016.3452831)  
+[Main-Memory Hash Joins on Multi-Core CPUs: Tuning to the Underlying Hardware](https://15721.courses.cs.cmu.edu/spring2017/papers/18-hashjoins/balkesen-icde2013.pdf)    
+[Towards Multi-way Join Aware Optimizer in SAP HANA](http://www.vldb.org/pvldb/vol13/p3019-wi.pdf)   
+[massively parallel sort-merge joins in main memory multi-core database systems](https://15721.courses.cs.cmu.edu/spring2018/papers/20-sortmergejoins/p1064-albutiu.pdf)   
+
 
 # Resource Scheduler
 [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

@@ -55,12 +55,12 @@
 ![img](https://github.com/leoYY/papers/blob/main/img/LOLEPOPS-DAG.png)   
 
 整个Plan Tree => DAG的转变，从整个图中可以看到，自左向右，
-首先SQL采用关系代数的方式表达， 对于Agg的计算会进行拆解，每个计算表达式通过 包含了 ARG/KEY/ORD 三个属性。
+首先SQL采用关系代数的方式表达， 对于Agg的计算会进行拆解。  
+每个计算表达式由 ARG/KEY/ORD 三个维度表示。
 
-对于median 需要采用sort-AGG实现，因此 ORD = a ，avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数据计算公式中，需要统计总数可以进行表达式级别的复用。  
+对于median 需要采用sort-AGG实现，因此 ORD = a ，avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数据计算公式中，需要统计总数可以进行表达式级别的复用。   
+
 另外就是ANY，这里面的ANY更多的是想进行去重，无实际含义，主要是用于算 Sum-Distinct的 转换成了group by d，c 后进行计算。  
-
-从整个图上的步骤可以看到， 对于表达式通过类似的方式拆分，得到了一张DAG图；
 
 ![img](https://github.com/leoYY/papers/blob/main/img/LOLEPOP_DAG_algo.png)  
 
@@ -71,8 +71,8 @@
 4.  处理DAG图的上下游；  
 5.  DAG图的优化；
 
-关于DAG图的优化方面，一方面对于一些比不要的计算优化，如有包含关系的sort key，以及多余的combine(groupingSets中)，进行图复杂度的简化rewrite；
-另外一方面，对于算子算法本身的优化，如indirect or inplace sort，不过本身选择的策略并没有详细讨论。  
+关于DAG图的优化方面，一方面对于一些不必要的计算优化，如有包含关系的sort key，以及多余的combine(groupingSets中)，进行图复杂度的简化rewrite；
+另外一方面，对于算子算法本身的优化，如indirect or inplace sort，sort策略等选择，不过本身选择的策略并没有详细讨论。    
 
 这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，尽可能保持cache友好。
 

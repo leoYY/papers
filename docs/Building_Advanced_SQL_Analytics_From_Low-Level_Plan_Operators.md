@@ -48,17 +48,19 @@
 
 算子间的交互不再局限于一种形式，同时存在tuple-by-tuple， 或者 物化后的buffer，如Sort的input是Buffer，可以减少输出的物化开销。  
 
-可以看到，对于Order-Agg，Window等算子，不再内部进行数据的物化，完全依赖外部物化好的结果，input处采用buffer。  
+可以看到，对于Order-Agg，Window等算子，不再内部进行数据的物化，完全依赖外部物化好的结果，input类型为buffer。  
 
 #### Plan Tree => DAG
 
 ![img](https://github.com/leoYY/papers/blob/main/img/LOLEPOPS-DAG.png)   
 
 整个Plan Tree => DAG的转变，从整个图中可以看到，自左向右，
-首先SQL采用关系代数的方式表达， 对于Agg的计算会进行拆解。  
+首先SQL采用关系代数的方式表达， 然后对具体的计算表达式拆解成独立的节点。  
 每个计算表达式由 ARG/KEY/ORD 三个维度表示。
 
-对于median 需要采用sort-AGG实现，因此 ORD = a ，avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数据计算公式中，需要统计总数可以进行表达式级别的复用。   
+例子中，对于median 需要采用sort-AGG实现，因此 ORD = a key = d（group by列）， arg = a(实际计算参数)；  
+
+avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数据计算公式中，需要统计总数可以进行表达式级别的复用。   
 
 另外就是ANY，这里面的ANY更多的是想进行去重，无实际含义，主要是用于算 Sum-Distinct的 转换成了group by d，c 后进行计算。  
 
@@ -71,10 +73,11 @@
 4.  处理DAG图的上下游；  
 5.  DAG图的优化；
 
-关于DAG图的优化方面，一方面对于一些不必要的计算优化，如有包含关系的sort key，以及多余的combine(groupingSets中)，进行图复杂度的简化rewrite；
+关于DAG图的优化方面，一方面对于一些不必要的计算优化，如有包含关系的sort key，以及多余的combine(groupingSets中)，进行图复杂度的简化rewrite；  
+
 另外一方面，对于算子算法本身的优化，如indirect or inplace sort，sort策略等选择，不过本身选择的策略并没有详细讨论。    
 
-这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，尽可能保持cache友好。
+__这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，尽可能保持cache友好。__
 
 #### 一些更复杂的例子
 
@@ -84,10 +87,10 @@
 
 Eample 1的扩展groupingSet，通过首先计算最长keys，然后结果计算其他keys，计算结果复用，同时由于三个hashAgg的结果不存在join上的情况，combine同时可以优化成union all；  
 Eample 2的更多是对于sort or hash agg方式的选择；  
-Eample 3，比较特殊的在于进一步合并了topN算子，对于本身window计算物化后的有序数组，进一步sort 提供limit，__这里面我认为topN的算法，可以先进行分割，取topN后，则对N排序，会更快一些__ 
-Eample 4/5，更多是组合window 与 order-Agg来实现比较复杂的统计逻辑；
+Eample 3，比较特殊的在于进一步合并了topN算子，对于本身window计算物化后的有序数组，进一步sort 提供limit，__这里面我认为topN的算法，可以先进行分割，取topN后，则对N排序，会更快一些__   
+Eample 4/5，更多是组合window 与 order-Agg来实现比较复杂的统计逻辑；  
 
-最终同时给出一个API接口，可以比较简单的描述这种依赖关系的统计计算；  
+最终给出一个API接口，可以比较简单的描述这种依赖关系的统计计算；  
 
 ```
 def planMSSD ( arg , key , ord ):
@@ -100,7 +103,7 @@ def planMSSD ( arg , key , ord ):
     return res
 ```
 
-可以看到，表达式核心由arg，key，ord来标识；
+这里也可以看到，表达式核心由arg，key，ord来标识；
 
 ### 实现考虑
 
@@ -116,11 +119,11 @@ umbra 典型的compiled系统，采用的producer/consumer的模型。
 
 #### 内存结构 Tuple Buffer；
 
-这里关于Tuple Buffer介绍主要考虑几点：
-1. 通过chunk list的方式，无法预估数据的情况下，减少reallocate开销；
-2. 虽然是列存系统，但是对于物化结果采用行存的方式，对于 in-place sort有比较好的效果；
+这里关于Tuple Buffer介绍主要考虑几点：  
+1. 通过chunk list的方式，无法预估数据的情况下，减少reallocate开销；  
+2. 虽然是列存系统，但是对于物化结果采用行存的方式，对于 in-place sort有比较好的效果；  
 
-对于indirect sort，采用premultation vector，原理上与prefix-Sort有类似，不过文中考虑的更多是在于实际计算过程中的比较，因此会存全key的方式。这样带来更大的排序代价，但是提升计算的cache友好。  
+对于indirect sort，采用premultation vector，原理上与prefix-Sort有类似，不过文中考虑的更多是在于实际计算过程中的比较，因此会存全key的方式。这样带来了构建vector更大的开销，但是提升计算的cache友好，这部分倒没有具体介绍相关的模型考虑。  
 
 最终通过iterator的模式，来屏蔽访问的具体内存结构。 
 
@@ -143,5 +146,7 @@ Window的采用Segment Trees计算，对同一物化结果进行反复计算，�
 
 ## 总结   
 
-
+文章中比较新的地方就是对于物化结果的复用，通过把实际物化的算子单独抽象成Transform，而计算算子直接复用物化结果进行计算。  
+本文主要还是介绍了这套LOLEPOP的基础框架，简略的介绍了如何在umbra中的应用，其中一些细节的代价考虑，如in-place vs indirect， 这些方面没做过多介绍。  
+给我更多的启发在于，对于类似groupjoin的方式类似，物化结构的复用，groupjoin本身也是通过对join 以及 group hash结构的复用类似的情况；
 

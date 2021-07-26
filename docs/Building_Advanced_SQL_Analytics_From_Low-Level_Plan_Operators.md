@@ -100,7 +100,7 @@ avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数
 ![img](https://github.com/leoYY/papers/blob/main/img/EXAMPLES.png)  
 
 核心主要是：   
-Eample 0 主要还是相同hashAgg下多个表达式的计算，这部分大部分系统均可以做到；
+Eample 0 主要还是相同hashAgg下多个表达式的计算，这部分大部分系统均可以做到，不过文中的case，主要还是强调对于var_pop本身是可以基于sum，count进行关联计算；
 Eample 1的扩展groupingSet，通过首先计算最长keys，然后结果计算其他keys，计算结果复用，同时由于三个hashAgg的结果不存在join上的情况，combine同时可以优化成union all；  
 Eample 2的更多是对于sort or hash agg方式的选择；  
 Eample 3，比较特殊的在于进一步合并了topN算子，对于本身window计算物化后的有序数组，进一步sort 提供limit，__这里面我认为topN的算法，可以先进行分割，取topN后，则对N排序，会更快一些__   
@@ -119,7 +119,8 @@ def planMSSD ( arg , key , ord ):
     return res
 ```
 
-这里也可以看到，表达式核心由arg，key，ord来标识；
+这里也可以看到，表达式核心由arg，key，ord来标识；另外一点这种API使用方式，对于类似var_pop这种数学计算公式比较友好，本身描述了表达式间的依赖关系，达到表达式级别的复用。
+
 
 ### 实现考虑
 

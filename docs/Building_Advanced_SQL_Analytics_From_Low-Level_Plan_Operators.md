@@ -12,11 +12,19 @@
 - 代码逻辑未复用，如Sort-Agg和Window等均需要sort；    
 - 数据未复用，算子间的状态需要多次物化；   
 
-第一个问题，起初我还比较疑惑，因为本身presto目前类似如PagesIndex这种数据结构依然是可以在sort，window等算子内复用，理论上不存在这类问题，但是如果从论文的背景系统 Umbra来看的话，应该是在于code-gen的code block，以算子为粒度的话，如果需要排序的话，compile会展开对应的逻辑，导致代码块无法复用。  
-第二个问题，算子物化结果的复用。这个我理解本身含有两层含义，   
+第一个问题我其实比较困惑，理论上系统抽象做的好一些的话，基础的数据结构算法逻辑统一抽象在公共实现中，应该不存在代码冗余，因为不同的算子里更多的是对数据属性的需求，以及访问的区别，而实际排序逻辑这些均会复用，如presto；
 
-1. 物化的数据结构可以被多次使用，典型 如 相同group-by key下的多个Agg functions，本身是采用了相同的HashMap结构进行合并到一个算子计算，这类复用大部分系统都有做到；  
-2. 物化数据后的结果复用，从文中的例子来看，更多是物化数据的属性（如 order，partitioned）以及数据本身的share，如物化属性方面：如order属性下，避免额外的hash-based agg；
+第二个问题，从整片文章的举例来看的话，更多的是算子结果的share；  
+
+例如，groupingSet的例子，先计算最长的组合，再基于结果计算其他的，最后把所有结果union all；
+另外一类是同时有sort和 hashAgg，数据可以被share同时计算两种；
+还有一类就是ordAgg不同序的时候，可以多次share；
+
+```
+个人的一些理解，这里面的中间物化结果复用，其实有两类：  
+1. 对于一次hash or sort，多个表达式的计算，这种本身是通过把数据属性需求一致的表达式放在一起计算，通过一次物化，这一类大部分系统应该都支持；
+2. 就是算子结果的share； 这一类目前主要是类似CTE，在单个node内计划的cte，大部分系统依然还是树形的结构，一个operator node对应下游一个operator node；
+```
 
 #### 目前常见算子的物化代价
 
@@ -29,8 +37,8 @@
 - HashAgg，HashMap，物化代价：重新构建一个HashMap，相比hashJoin，本身数据集会合并；
 - Window， Sort实现，物化代价：Sorted Address构建；
 
-以上主要是算子本身input需要做的物化， 另外一方面的物化开销，主要就是本身在输出过程中。
-
+目前Presto里面的实现，各个有状态的算子，主要还是indirect实现，数据单独追加存放（物化开销很低，不涉及内存拷贝），物化主要体现在构建索引上（indirect sort构建有序的索引），但是在输出的阶段，为了保证数据的属性，需要随机的访存，存在写入的物化代价。   
+如sort，本身需要保证输出结果有序，则需要额外物化数据本身，如hashAgg，需要保证group中的key 和 state对齐，需要额外物化；
 
 ## 方案：具体怎么做的  
 
@@ -49,6 +57,10 @@
 算子间的交互不再局限于一种形式，同时存在tuple-by-tuple， 或者 物化后的buffer，如Sort的input是Buffer，可以减少输出的物化开销。  
 
 可以看到，对于Order-Agg，Window等算子，不再内部进行数据的物化，完全依赖外部物化好的结果，input类型为buffer。  
+
+```
+对于low-level plan operator的抽象，从整个抽出来的transform主要还是应用于sort相关，这里面从他的例子中，从他的例子中更多看到的是 在相同partition后的数据情况下，sort间是有依赖的，可以复用具体的数据buffer；
+```
 
 #### Plan Tree => DAG
 
@@ -77,7 +89,9 @@ avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数
 
 另外一方面，对于算子算法本身的优化，如indirect or inplace sort，sort策略等选择，不过本身选择的策略并没有详细讨论。    
 
-__这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，尽可能保持cache友好。__
+```
+这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，在复用结果的时候，尽可能保持cache友好。
+```
 
 #### 一些更复杂的例子
 
@@ -134,7 +148,7 @@ Window的采用Segment Trees计算，对同一物化结果进行反复计算，�
 另外对于HashAgg，会存在partial-Agg的逻辑，partial阶段会根据下游并发的分桶进行partial-agg，每个写一个chunk中，最后会concat整个chunk发给下一个线程进行计算。  
 这里面主要涉及到 umbra的线程模型，从HashAgg的逻辑来看，会存在类似localExchange的方式进行线程间的通信，文中使用Shuffle来描述这个过程。  
 
-对于partition算子，会存在显示的shuffle调用。对于需要in-place modified情况，会compact chunk lists，该做法尽可能减少后续算子的代价，。    
+对于partition算子，会存在显示的shuffle调用。对于需要in-place modified情况，会compact chunk lists，该做法尽可能减少后续算子的代价。    
 
 在整片文章中，多次提到thread-local buffer，感觉更多是对于算子单线程内管理的内存buffer，在需要partition的时候，存在shuffle给其他线程的情况。  
 

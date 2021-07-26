@@ -62,6 +62,10 @@
 对于low-level plan operator的抽象，从整个抽出来的transform主要还是应用于sort相关，这里面从他的例子中，从他的例子中更多看到的是 在相同partition后的数据情况下，sort间是有依赖的，可以复用具体的数据buffer，如median(a),median(b) group by c, median(a) 需要 sort （c, a）, 而 median（b)需要sort (c,b)，从后面的实现可以知道，partition做数据分区采用hash的方式，sort (c,a)后的结果再sort（c,b)， 两者均使用indirect sort的话，本身直接从 partition拿到buffer，应该是类似的代价，而实际是通过sort结果进行share，我的理解是对于sort(c,a)可以做in-place sort，一方面可以优化ordAgg的访问cache 友好，同时对于sort （c,b)也有一定程度的访问优化效果。
 ```
 
+```
+另外，如果直接拿buffer，本身从目前的一些实现来看，内存开销是有所下降的，如目前presto实现的window，在连续的两个window下，因为indirect sort的缘故，本身需要全部物化输出完才可释放，在这种情况下内存开销是成倍的。
+```
+
 #### Plan Tree => DAG
 
 ![img](https://github.com/leoYY/papers/blob/main/img/LOLEPOPS-DAG.png)   
@@ -100,11 +104,11 @@ avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数
 ![img](https://github.com/leoYY/papers/blob/main/img/EXAMPLES.png)  
 
 核心主要是：   
-Eample 0 主要还是相同hashAgg下多个表达式的计算，这部分大部分系统均可以做到，不过文中的case，主要还是强调对于var_pop本身是可以基于sum，count进行关联计算；
-Eample 1的扩展groupingSet，通过首先计算最长keys，然后结果计算其他keys，计算结果复用，同时由于三个hashAgg的结果不存在join上的情况，combine同时可以优化成union all；  
-Eample 2的更多是对于sort or hash agg方式的选择；  
+Eample 0，主要还是相同hashAgg下多个表达式的计算，这部分大部分系统均可以做到，不过文中的case，主要还是强调对于var_pop本身是可以基于sum，count进行关联计算；
+Eample 1，扩展groupingSet，通过首先计算最长keys，然后结果计算其他keys，计算结果复用，同时由于三个hashAgg的结果不存在join上的情况，combine同时可以优化成union all；  
+Eample 2，更多是对于sort or hash agg方式的选择，对于无需额外排序的可以走sort，而对于需要额外排序的尽可能走hash；  
 Eample 3，比较特殊的在于进一步合并了topN算子，对于本身window计算物化后的有序数组，进一步sort 提供limit，__这里面我认为topN的算法，可以先进行分割，取topN后，则对N排序，会更快一些__   
-Eample 4/5，更多是组合window 与 order-Agg来实现比较复杂的统计逻辑；  
+Eample 4/5，更多是组合window 与 order-Agg来实现比较复杂的统计逻辑，需要嵌套的聚合逻辑；  
 
 最终给出一个API接口，可以比较简单的描述这种依赖关系的统计计算；  
 

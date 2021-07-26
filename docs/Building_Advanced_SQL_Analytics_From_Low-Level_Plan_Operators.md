@@ -176,6 +176,6 @@ Window的采用Segment Trees计算，对同一物化结果进行反复计算，�
 1. 内存空间的优化，如目前的sort 以及 window，均是需要物化所有结果后再释放内存（indirect sort的情况）；
 2. 计算代价方面，同样可以分为几方面   
     1） 完全一致的数据属性，这部分大部分系统应该都支持，如 hashAgg多表达式计算，window等；  
-    2） 部分数据属性需求，如window的 prePartition，preSort列属性，从文中的case来看，这部分可以通过indirect sort复用，同一份中间物化结果buffer，本上sort上并不会减少计算代价，更多还是输出的物化开销降低；  
+    2） 部分数据属性需求，如window的 prePartition，preSort列属性，从文中的case来看，这部分可以通过indirect sort复用，同一份中间物化结果buffer，本上sort上并不会减少计算代价，更多还是输出的物化开销降低；这里面需要考虑另外一个背景，tuple by tuple下对于多个需要物化的算子，确实需要重复的物化，而对于mini-batch情况下，物化开销会小一些；  
     另外，对于本身这种share的情况会引入combine的join额外开销，这块的考虑也没有太多介绍。
 

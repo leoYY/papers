@@ -150,7 +150,7 @@ Window的采用Segment Trees计算，对同一物化结果进行反复计算，�
 另外对于HashAgg，会存在partial-Agg的逻辑，partial阶段会根据下游并发的分桶进行partial-agg，每个写一个chunk中，最后会concat整个chunk发给下一个线程进行计算。  
 这里面主要涉及到 umbra的线程模型，从HashAgg的逻辑来看，会存在类似localExchange的方式进行线程间的通信，文中使用Shuffle来描述这个过程。  
 
-对于partition算子，会存在显示的shuffle调用。对于需要in-place modified情况，会compact chunk lists，该做法尽可能减少后续算子的代价。    
+对于partition算子，会存在显示的shuffle调用。对于需要in-place modified情况，会compact chunk lists成一个大的chunk，该做法尽可能减少后续算子的代价。    
 
 在整片文章中，多次提到thread-local buffer，感觉更多是对于算子单线程内管理的内存buffer，在需要partition的时候，存在shuffle给其他线程的情况。  
 
@@ -158,10 +158,10 @@ Window的采用Segment Trees计算，对同一物化结果进行反复计算，�
 
 #### 效果方案
 
-整个文章的case设计还是比较精细的，每个case均有明确的优化点来对比HyPer。
+整个文章的case设计还是比较精细的，每个case均有明确的优化点来对比HyPer。相比Hyper均有比较明显的提升，这里面参考意义不大，整体物化开销的优化，效果多少更多需要具体工程细节上的把控，这部分在论文中相关的讨论介绍的不是很多。
 
 ## 总结   
 
 本文主要还是介绍了这套LOLEPOP的基础框架，简略的介绍了如何在umbra中的应用，其中一些细节的代价考虑，如in-place vs indirect， 这些方面没做过多介绍。  
 文中核心对物化结果的复用，更多是share operator结果，但是比较有特点就是对于算子间的接口不再是单一的tuple by tuple而是可以交互成buffer，这种方式在我看来是一种新的融合方式。  
-传统的融合算子，更多是通过compiled出紧凑的forloop，把计算逻辑融合到一个算子中，这种对于行级别的表达式计算，尽可能提升寄存器友好的算法，但是对于本身存在需要物化的算子，通过传输物化结果来进行融合。对于类似GroupJoin的case
+传统的融合算子，更多是通过compiled出紧凑的forloop，把计算逻辑融合到一个算子中，这种对于行级别的表达式计算，尽可能提升寄存器友好的算法，但是对于本身存在需要物化的算子，通过传输物化结果来进行融合。对于类似GroupByJoin的case，其实也是类似的思路，groupby的hash结构，如何给join的hash构建复用。

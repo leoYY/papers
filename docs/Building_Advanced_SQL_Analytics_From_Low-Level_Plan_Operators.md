@@ -59,7 +59,7 @@
 可以看到，对于Order-Agg，Window等算子，不再内部进行数据的物化，完全依赖外部物化好的结果，input类型为buffer。  
 
 ```
-对于low-level plan operator的抽象，从整个抽出来的transform主要还是应用于sort相关，这里面从他的例子中，从他的例子中更多看到的是 在相同partition后的数据情况下，sort间是有依赖的，可以复用具体的数据buffer；
+对于low-level plan operator的抽象，从整个抽出来的transform主要还是应用于sort相关，这里面从他的例子中，从他的例子中更多看到的是 在相同partition后的数据情况下，sort间是有依赖的，可以复用具体的数据buffer，如median(a),median(b) group by c, median(a) 需要 sort （c, a）, 而 median（b)需要sort (c,b)，从后面的实现可以知道，partition做数据分区采用hash的方式，sort (c,a)后的结果再sort（c,b)， 两者均使用indirect sort的话，本身直接从 partition拿到buffer，应该是类似的代价，而实际是通过sort结果进行share，我的理解是对于sort(c,a)可以做in-place sort，一方面可以优化ordAgg的访问cache 友好，同时对于sort （c,b)也有一定程度的访问优化效果。
 ```
 
 #### Plan Tree => DAG
@@ -90,15 +90,17 @@ avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数
 另外一方面，对于算子算法本身的优化，如indirect or inplace sort，sort策略等选择，不过本身选择的策略并没有详细讨论。    
 
 ```
-这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，在复用结果的时候，尽可能保持cache友好。
+这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，就是跟上面类似；
 ```
 
 #### 一些更复杂的例子
 
 文中接下来给了5个更具体复杂一些的例子，
 
-核心主要是：   
+![img](https://github.com/leoYY/papers/blob/main/img/EXAMPLES.png)  
 
+核心主要是：   
+Eample 0 主要还是相同hashAgg下多个表达式的计算，这部分大部分系统均可以做到；
 Eample 1的扩展groupingSet，通过首先计算最长keys，然后结果计算其他keys，计算结果复用，同时由于三个hashAgg的结果不存在join上的情况，combine同时可以优化成union all；  
 Eample 2的更多是对于sort or hash agg方式的选择；  
 Eample 3，比较特殊的在于进一步合并了topN算子，对于本身window计算物化后的有序数组，进一步sort 提供limit，__这里面我认为topN的算法，可以先进行分割，取topN后，则对N排序，会更快一些__   

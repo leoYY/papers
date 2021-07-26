@@ -95,6 +95,7 @@ avg这里面做了拆分，拆分成了sum；count，对于一些更复杂的数
 
 ```
 这块我的理解， 如图上的例子，如果median(a), median(c) 的话，本身sort均是基于key + arg，那么对于第一次sort可以采用in-place sort，就是跟上面类似；
+另外一点，对于引入combine后，多个子路径下的计算表达式紧需要参与计算的列，并不需要全部列。
 ```
 
 #### 一些更复杂的例子
@@ -168,5 +169,12 @@ Window的采用Segment Trees计算，对同一物化结果进行反复计算，�
 ## 总结   
 
 本文主要还是介绍了这套LOLEPOP的基础框架，简略的介绍了如何在umbra中的应用，其中一些细节的代价考虑，如in-place vs indirect， 这些方面没做过多介绍。  
-文中核心对物化结果的复用，更多是share operator结果，但是比较有特点就是对于算子间的接口不再是单一的tuple by tuple而是可以交互成buffer，这种方式在我看来是一种新的融合方式。  
-传统的融合算子，更多是通过compiled出紧凑的forloop，把计算逻辑融合到一个算子中，这种对于行级别的表达式计算，尽可能提升寄存器友好的算法，但是对于本身存在需要物化的算子，通过传输物化结果来进行融合。对于类似GroupByJoin的case，其实也是类似的思路，groupby的hash结构，如何给join的hash构建复用。
+本文核心还是在于对物化结果的复用，一方面类似结果share，如HashAGG的share，主要还是支持较轻量级的rescan，
+但是比较有特点就是对于算子间的接口不再是单一的tuple by tuple而是可以交互成buffer，这种方式在我看来是一种新的融合方式。  
+传统的融合算子，更多是通过compiled出紧凑的forloop，把计算逻辑融合到一个算子中，这种对于行级别的表达式计算，尽可能提升寄存器友好的算法，但是对于本身存在需要物化的算子，通过传输物化结果来进行融合。对于类似GroupByJoin的case，其实也是类似的思路，groupby的hash结构，如何给join的hash构建复用。   
+对于buffer交互的方式，带来的物化开销优化的思考：
+1. 内存空间的优化，如目前的sort 以及 window，均是需要物化所有结果后再释放内存（indirect sort的情况）；
+2. 计算代价方面，同样可以分为几方面   
+    1） 完全一致的数据属性，这部分大部分系统应该都支持，如 hashAgg多表达式计算，window等；
+    2） 部分数据属性需求，如window的 prePartition，preSort列属性，从文中的case来看，这部分可以通过indirect sort复用，同一份中间物化结果buffer，本上sort上并不会减少计算代价，更多还是输出的物化开销降低；
+

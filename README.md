@@ -27,6 +27,7 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 ### Aggregate Operator
 
 [Adaptive Aggregation on Chip Multiprocessors](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.440.8800&rep=rep1&type=pdf)    
+[Cache-Efficient Aggregation: Hashing Is Sorting](https://dl.acm.org/doi/pdf/10.1145/2723372.2747644)   
 
 ### Window Operator 
 [Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   

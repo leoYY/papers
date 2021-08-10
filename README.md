@@ -51,6 +51,6 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 
 # Computer architecture
 [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)  
-
+[BlockQuicksort: Avoiding Branch Mispredictions in Quicksort](https://drops.dagstuhl.de/opus/volltexte/2016/6389/pdf/LIPIcs-ESA-2016-38.pdf)   
 
 # Publish Index

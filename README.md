@@ -39,6 +39,7 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 [Main-Memory Hash Joins on Multi-Core CPUs: Tuning to the Underlying Hardware](https://15721.courses.cs.cmu.edu/spring2017/papers/18-hashjoins/balkesen-icde2013.pdf)    
 [Towards Multi-way Join Aware Optimizer in SAP HANA](http://www.vldb.org/pvldb/vol13/p3019-wi.pdf)   
 [massively parallel sort-merge joins in main memory multi-core database systems](https://15721.courses.cs.cmu.edu/spring2018/papers/20-sortmergejoins/p1064-albutiu.pdf)   
+[Main-Memory Hash Joins on Modern Processor Architectures](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6778794)   
 
 
 # Resource Scheduler

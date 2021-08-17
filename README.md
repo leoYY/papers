@@ -16,7 +16,8 @@ follow
 [优化器cost模型验证 Testing the accuracy of query optimizers](https://databasescience.files.wordpress.com/2013/01/taqo.pdf)  
 
 ## Estimation  
-[Are We Ready For Learned Cardinality Estimation?](https://arxiv.org/pdf/2012.06743.pdf)  
+[Are We Ready For Learned Cardinality Estimation?](https://arxiv.org/pdf/2012.06743.pdf)   https://dataprep.ai/    
+
 
 
 # Query Execution

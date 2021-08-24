@@ -53,6 +53,7 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 [Towards Multi-way Join Aware Optimizer in SAP HANA](http://www.vldb.org/pvldb/vol13/p3019-wi.pdf)   
 [massively parallel sort-merge joins in main memory multi-core database systems](https://15721.courses.cs.cmu.edu/spring2018/papers/20-sortmergejoins/p1064-albutiu.pdf)   
 [Main-Memory Hash Joins on Modern Processor Architectures](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6778794)   
+[Multi-Way Hash Join Effectiveness](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.706.6219&rep=rep1&type=pdf)   
 
 ### No Classify
 [Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  

@@ -41,7 +41,8 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 [Incremental Computation of Common Windowed Holistic Aggregates](https://research.tableau.com/sites/default/files/p1221-wesley.pdf)   
 [Analytic Functions in Oracle 8i](http://infolab.stanford.edu/infoseminar/archive/SpringY2000/speakers/agupta/paper.pdf)   
 [Hammer Slide: Work- and CPU-efficient Streaming Window Aggregation](http://www.adms-conf.org/2018-camera-ready/SIMDWindowPaper_ADMS'18.pdf)    
-
+[Sliding-Window Aggregation Algorithms](http://hirzels.com/martin/papers/encyc18-sliding-window.pdf)   
+[Slider: Incremental Sliding Window Analytics](https://dl.acm.org/doi/abs/10.1145/2663165.2663334)   
 
 ### Join Operator
 [To Partition, or Not to Partition, That is the Join Question in a Real System](https://dl.acm.org/doi/abs/10.1145/3448016.3452831)  

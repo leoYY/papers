@@ -34,6 +34,9 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 
 [Adaptive Aggregation on Chip Multiprocessors](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.440.8800&rep=rep1&type=pdf)    
 [Cache-Efficient Aggregation: Hashing Is Sorting](https://dl.acm.org/doi/pdf/10.1145/2723372.2747644)   
+[Accelerating Aggregation using Intra-cycle Parallelism](https://www.semanticscholar.org/paper/Accelerating-aggregation-using-intra-cycle-Feng-Lo/4f3ba18bad4307a241378731b4c96a6899b56669)   
+[High Throughput Heavy Hitter Aggregation for Modern SIMD Processors](http://www.cs.columbia.edu/~orestis/damon13.pdf)   
+
 
 ### Window Operator 
 [Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   
@@ -51,6 +54,9 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 [massively parallel sort-merge joins in main memory multi-core database systems](https://15721.courses.cs.cmu.edu/spring2018/papers/20-sortmergejoins/p1064-albutiu.pdf)   
 [Main-Memory Hash Joins on Modern Processor Architectures](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6778794)   
 
+### No Classify
+[Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
+[DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
 
 # Resource Scheduler
 [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

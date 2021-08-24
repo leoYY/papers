@@ -18,6 +18,7 @@ follow
 ## Estimation  
 [Are We Ready For Learned Cardinality Estimation?](https://arxiv.org/pdf/2012.06743.pdf)   https://dataprep.ai/    
 
+[优化器利用window解关联：WinMagic : Subquery Elimination Using Window Aggregation ](https://thelackthereof.org/docs/library/cs/database/Zuzarte,%20Calisto%20et%20al:%20Winmagic%20-%20Subquery%20Elimination%20Using%20Window%20Aggregation.pdf)  
 
 
 # Query Execution
@@ -38,6 +39,9 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 [Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   
 [Optimization of Analytic Window Functions](http://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf)    
 [Incremental Computation of Common Windowed Holistic Aggregates](https://research.tableau.com/sites/default/files/p1221-wesley.pdf)   
+[Analytic Functions in Oracle 8i](http://infolab.stanford.edu/infoseminar/archive/SpringY2000/speakers/agupta/paper.pdf)   
+[Hammer Slide: Work- and CPU-efficient Streaming Window Aggregation](http://www.adms-conf.org/2018-camera-ready/SIMDWindowPaper_ADMS'18.pdf)    
+
 
 ### Join Operator
 [To Partition, or Not to Partition, That is the Join Question in a Real System](https://dl.acm.org/doi/abs/10.1145/3448016.3452831)  

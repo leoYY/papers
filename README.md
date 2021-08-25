@@ -27,47 +27,48 @@ follow
 Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 
 ## Operator Algo
-[Building Advanced SQL Analytics From Low-Level Plan Operators](https://db.in.tum.de/~kohn/papers/lolepops-sigmod21.pdf)   
-[Accelerating Queries with Group-By and Join by Groupjoin](http://www.vldb.org/pvldb/vol4/p843-moerkotte.pdf)  
+
+- [x] [Building Advanced SQL Analytics From Low-Level Plan Operators](https://db.in.tum.de/~kohn/papers/lolepops-sigmod21.pdf)   
+- [x] [Accelerating Queries with Group-By and Join by Groupjoin](http://www.vldb.org/pvldb/vol4/p843-moerkotte.pdf)  
 
 ### Aggregate Operator
 
-[Adaptive Aggregation on Chip Multiprocessors](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.440.8800&rep=rep1&type=pdf)    
-[Cache-Efficient Aggregation: Hashing Is Sorting](https://dl.acm.org/doi/pdf/10.1145/2723372.2747644)   
-[Accelerating Aggregation using Intra-cycle Parallelism](https://www.semanticscholar.org/paper/Accelerating-aggregation-using-intra-cycle-Feng-Lo/4f3ba18bad4307a241378731b4c96a6899b56669)   
-[High Throughput Heavy Hitter Aggregation for Modern SIMD Processors](http://www.cs.columbia.edu/~orestis/damon13.pdf)   
+- [ ] [Adaptive Aggregation on Chip Multiprocessors](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.440.8800&rep=rep1&type=pdf)    
+- [ ] [Cache-Efficient Aggregation: Hashing Is Sorting](https://dl.acm.org/doi/pdf/10.1145/2723372.2747644)   
+- [ ] [Accelerating Aggregation using Intra-cycle Parallelism](https://www.semanticscholar.org/paper/Accelerating-aggregation-using-intra-cycle-Feng-Lo/4f3ba18bad4307a241378731b4c96a6899b56669)   
+- [ ] [High Throughput Heavy Hitter Aggregation for Modern SIMD Processors](http://www.cs.columbia.edu/~orestis/damon13.pdf)   
 
 
 ### Window Operator 
-[Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   
-[Optimization of Analytic Window Functions](http://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf)    
-[Incremental Computation of Common Windowed Holistic Aggregates](https://research.tableau.com/sites/default/files/p1221-wesley.pdf)   
-[Analytic Functions in Oracle 8i](http://infolab.stanford.edu/infoseminar/archive/SpringY2000/speakers/agupta/paper.pdf)   
-[Hammer Slide: Work- and CPU-efficient Streaming Window Aggregation](http://www.adms-conf.org/2018-camera-ready/SIMDWindowPaper_ADMS'18.pdf)    
-[Sliding-Window Aggregation Algorithms](http://hirzels.com/martin/papers/encyc18-sliding-window.pdf)   
-[Slider: Incremental Sliding Window Analytics](https://dl.acm.org/doi/abs/10.1145/2663165.2663334)   
+- [x] [Efficient Processing of Window Functions in Analytical SQL Queries](https://dl.acm.org/doi/pdf/10.14778/2794367.2794375)   
+- [ ] [Optimization of Analytic Window Functions](http://vldb.org/pvldb/vol5/p1244_yucao_vldb2012.pdf)    
+- [ ] [Incremental Computation of Common Windowed Holistic Aggregates](https://research.tableau.com/sites/default/files/p1221-wesley.pdf)   
+- [ ] [Analytic Functions in Oracle 8i](http://infolab.stanford.edu/infoseminar/archive/SpringY2000/speakers/agupta/paper.pdf)   
+- [ ] [Hammer Slide: Work- and CPU-efficient Streaming Window Aggregation](http://www.adms-conf.org/2018-camera-ready/SIMDWindowPaper_ADMS'18.pdf)    
+- [ ] [Sliding-Window Aggregation Algorithms](http://hirzels.com/martin/papers/encyc18-sliding-window.pdf)   
+- [ ] [Slider: Incremental Sliding Window Analytics](https://dl.acm.org/doi/abs/10.1145/2663165.2663334)   
 
 ### Join Operator
-[To Partition, or Not to Partition, That is the Join Question in a Real System](https://dl.acm.org/doi/abs/10.1145/3448016.3452831)  
-[Main-Memory Hash Joins on Multi-Core CPUs: Tuning to the Underlying Hardware](https://15721.courses.cs.cmu.edu/spring2017/papers/18-hashjoins/balkesen-icde2013.pdf)    
-[Towards Multi-way Join Aware Optimizer in SAP HANA](http://www.vldb.org/pvldb/vol13/p3019-wi.pdf)   
-[massively parallel sort-merge joins in main memory multi-core database systems](https://15721.courses.cs.cmu.edu/spring2018/papers/20-sortmergejoins/p1064-albutiu.pdf)   
-[Main-Memory Hash Joins on Modern Processor Architectures](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6778794)   
-[Multi-Way Hash Join Effectiveness](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.706.6219&rep=rep1&type=pdf)   
+- [x] [To Partition, or Not to Partition, That is the Join Question in a Real System](https://dl.acm.org/doi/abs/10.1145/3448016.3452831)  
+- [ ] [Main-Memory Hash Joins on Multi-Core CPUs: Tuning to the Underlying Hardware](https://15721.courses.cs.cmu.edu/spring2017/papers/18-hashjoins/balkesen-icde2013.pdf)    
+- [ ] [Towards Multi-way Join Aware Optimizer in SAP HANA](http://www.vldb.org/pvldb/vol13/p3019-wi.pdf)   
+- [ ] [massively parallel sort-merge joins in main memory multi-core database systems](https://15721.courses.cs.cmu.edu/spring2018/papers/20-sortmergejoins/p1064-albutiu.pdf)   
+- [ ] [Main-Memory Hash Joins on Modern Processor Architectures](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6778794)   
+- [ ] [Multi-Way Hash Join Effectiveness](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.706.6219&rep=rep1&type=pdf)   
 
 ### No Classify
-[Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
-[DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
+- [ ] [Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
+- [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
 
 # Resource Scheduler
-[非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  
+- [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  
 
 # Self-driving
 
-[Self-Driving Database Management Systems](https://www.pdl.cmu.edu/PDL-FTP/Database/p42-pavlo-cidr17.pdf)  
+- [ ] [Self-Driving Database Management Systems](https://www.pdl.cmu.edu/PDL-FTP/Database/p42-pavlo-cidr17.pdf)  
 
 # Computer architecture
-[What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)  
-[BlockQuicksort: Avoiding Branch Mispredictions in Quicksort](https://drops.dagstuhl.de/opus/volltexte/2016/6389/pdf/LIPIcs-ESA-2016-38.pdf)   
+- [ ] [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)  
+- [ ] [BlockQuicksort: Avoiding Branch Mispredictions in Quicksort](https://drops.dagstuhl.de/opus/volltexte/2016/6389/pdf/LIPIcs-ESA-2016-38.pdf)   
 
 # Publish Index

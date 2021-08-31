@@ -57,6 +57,9 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 - [ ] [Multi-Way Hash Join Effectiveness](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.706.6219&rep=rep1&type=pdf)   
 - [ ] [Efficient Query Processing with Optimistically Compressed Hash Tables & Strings in the USSR](https://ir.cwi.nl/pub/30644/30644.pdf)  
 
+### Compiled
+- [ ] [Adaptive Code Generation for Data-Intensive Analytics](http://vldb.org/pvldb/vol14/p929-zhang.pdf)    
+
 ### No Classify
 - [ ] [Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
 - [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    

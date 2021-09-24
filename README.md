@@ -63,6 +63,7 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 ### No Classify
 - [ ] [Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
 - [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
+- [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)   
 
 # Resource Scheduler
 - [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

@@ -65,8 +65,6 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 - [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
 - [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)   
 
-# Basic Algo
-- [ ] [BlockQuicksort: How Branch Mispredictions don't affect Quicksort](https://drops.dagstuhl.de/opus/volltexte/2016/6389/pdf/LIPIcs-ESA-2016-38.pdf)
 
 # Resource Scheduler
 - [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

@@ -30,6 +30,7 @@ Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 
 - [x] [Building Advanced SQL Analytics From Low-Level Plan Operators](https://db.in.tum.de/~kohn/papers/lolepops-sigmod21.pdf)   
 - [x] [Accelerating Queries with Group-By and Join by Groupjoin](http://www.vldb.org/pvldb/vol4/p843-moerkotte.pdf)  
+- [x] [A Practical Approach to GroupJoin and Nested Aggregates](https://vldb.org/pvldb/vol14/p2383-fent.pdf)       
 
 ### Aggregate Operator
 

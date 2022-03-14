@@ -28,7 +28,7 @@ follow
 - [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)  
 
 ## Query Execution model
-Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
+- [ ] Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 
 ## Operator Algo
 

@@ -7,6 +7,8 @@ follow
 [Andy Pavlo](https://scholar.google.com/citations?hl=zh-CN&user=u1UDm4wAAAAJ&view_op=list_works&sortby=pubdate)  
 [Peter Boncz](https://scholar.google.com/citations?hl=zh-CN&user=DCIZE1kAAAAJ&view_op=list_works&sortby=pubdate)
 
+[Optimizer:Alekh Jindal](https://scholar.google.com/citations?hl=zh-CN&user=f5vdXEQAAAAJ&view_op=list_works&sortby=pubdate)  
+
 
 # Query Optimizer
 

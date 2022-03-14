@@ -21,7 +21,11 @@ follow
 [优化器利用window解关联：WinMagic : Subquery Elimination Using Window Aggregation ](https://thelackthereof.org/docs/library/cs/database/Zuzarte,%20Calisto%20et%20al:%20Winmagic%20-%20Subquery%20Elimination%20Using%20Window%20Aggregation.pdf)  
 
 
-# Query Execution
+# Query Execution   
+
+## Adaptive Execution   
+
+- [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)  
 
 ## Query Execution model
 Balancing Vectorized Query Execution with Bandwidth-Optimized Storage

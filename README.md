@@ -34,7 +34,7 @@ follow
 
 ### Micro Adaptive  
 - [ ] [loop-adaptive execution in weld](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
-- [ ] [micro adaptivity in vectorwise ](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
+- [ ] [micro adaptivity in vectorwise ](https://15721.courses.cs.cmu.edu/spring2017/papers/20-compilation/p1231-raducanu.pdf)  
 
 ## Query Execution model
 - [ ] Balancing Vectorized Query Execution with Bandwidth-Optimized Storage

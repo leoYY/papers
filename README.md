@@ -32,8 +32,13 @@ follow
 
 - [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)  
 
+### Micro Adaptive  
+- [ ] [loop-adaptive execution in weld](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
+- [ ] [micro adaptivity in vectorwise ](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
+
 ## Query Execution model
 - [ ] Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
+- [ ] [Morsel-Driven Parallelism: A NUMA-Aware Query Evaluation Framework for the Many-Core Age](https://15721.courses.cs.cmu.edu/spring2016/papers/p743-leis.pdf)  
 
 ## Operator Algo
 
@@ -70,14 +75,14 @@ follow
 ### Compiled
 - [ ] [Adaptive Code Generation for Data-Intensive Analytics](http://vldb.org/pvldb/vol14/p929-zhang.pdf)    
 
+### Sort
+- [ ] [BlockQuicksort: Avoiding Branch Mispredictions in Quicksort](https://drops.dagstuhl.de/opus/volltexte/2016/6389/pdf/LIPIcs-ESA-2016-38.pdf)  
+- [ ] [Merge Path - A Visually Intuitive Approach to Parallel Merging](https://arxiv.org/pdf/1406.2628.pdf)  
+
 ### No Classify
 - [ ] [Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
 - [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
 - [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)   
-
-### Micro Adaptive  
-- [ ] [loop-adaptive execution in weld](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
-- [ ] [micro adaptivity in vectorwise ](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
 
 # Resource Scheduler
 - [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  
@@ -87,7 +92,6 @@ follow
 - [ ] [Self-Driving Database Management Systems](https://www.pdl.cmu.edu/PDL-FTP/Database/p42-pavlo-cidr17.pdf)  
 
 # Computer architecture
-- [ ] [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)  
-- [ ] [BlockQuicksort: Avoiding Branch Mispredictions in Quicksort](https://drops.dagstuhl.de/opus/volltexte/2016/6389/pdf/LIPIcs-ESA-2016-38.pdf)   
+- [ ] [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)   
 - [ ] [A Top-Down Method for Performance Analysis and Counters Architecture](https://ieeexplore.ieee.org/document/6844459)    
 - [ ] [TLSF: a New Dynamic Memory Allocator for Real-Time Systems∗](http://www.gii.upv.es/tlsf/files/ecrts04_tlsf.pdf)    

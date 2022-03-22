@@ -75,6 +75,9 @@ follow
 - [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
 - [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)   
 
+### Micro Adaptive  
+- [ ] [loop-adaptive execution in weld](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
+- [ ] [micro adaptivity in vectorwise ](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
 
 # Resource Scheduler
 - [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

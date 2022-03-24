@@ -35,7 +35,7 @@ follow
 ### Micro Adaptive  
 - [ ] [loop-adaptive execution in weld](https://homepages.cwi.nl/~boncz/msc/2018-RichardGankema.pdf)  
 - [ ] [micro adaptivity in vectorwise ](https://15721.courses.cs.cmu.edu/spring2017/papers/20-compilation/p1231-raducanu.pdf)  
-- [ ] [EED: A statically greedy and dynamically adaptive approach for speculative loop execution](https://www.mendeley.com/catalogue/67f6d344-504e-3d3d-bcbe-177bebd73809/)   
+- [ ] [SEED: A statically greedy and dynamically adaptive approach for speculative loop execution](https://www.mendeley.com/catalogue/67f6d344-504e-3d3d-bcbe-177bebd73809/)   
 
 ## Query Execution model
 - [ ] Balancing Vectorized Query Execution with Bandwidth-Optimized Storage

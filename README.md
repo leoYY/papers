@@ -81,6 +81,9 @@ follow
 - [ ] [BlockQuicksort: Avoiding Branch Mispredictions in Quicksort](https://drops.dagstuhl.de/opus/volltexte/2016/6389/pdf/LIPIcs-ESA-2016-38.pdf)  
 - [ ] [Merge Path - A Visually Intuitive Approach to Parallel Merging](https://arxiv.org/pdf/1406.2628.pdf)  
 
+### Hash   
+- [ ] [SAHA: A String Adaptive Hash Table for Analytical Databases](https://www.mendeley.com/catalogue/18cb3527-49ec-39bd-aaa5-2f4de5df7898/)   
+
 ### No Classify
 - [ ] [Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
 - [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    

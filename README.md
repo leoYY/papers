@@ -98,7 +98,7 @@ follow
 
 # CC  
 
-- [ ] [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control](https://jiekun.dev/posts/mvcc/)
+- [ ] [介绍MVCC： An Empirical Evaluation of In-Memory Multi-Version Concurrency Control](https://jiekun.dev/posts/mvcc/)
 
 # Computer architecture
 - [ ] [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)   

@@ -96,6 +96,10 @@ follow
 
 - [ ] [Self-Driving Database Management Systems](https://www.pdl.cmu.edu/PDL-FTP/Database/p42-pavlo-cidr17.pdf)  
 
+# CC  
+
+- [ ] [An Empirical Evaluation of In-Memory Multi-Version Concurrency Control](https://jiekun.dev/posts/mvcc/)
+
 # Computer architecture
 - [ ] [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)   
 - [ ] [A Top-Down Method for Performance Analysis and Counters Architecture](https://ieeexplore.ieee.org/document/6844459)    

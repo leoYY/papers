@@ -46,7 +46,8 @@ follow
 
 - [x] [Building Advanced SQL Analytics From Low-Level Plan Operators](https://db.in.tum.de/~kohn/papers/lolepops-sigmod21.pdf)   
 - [x] [Accelerating Queries with Group-By and Join by Groupjoin](http://www.vldb.org/pvldb/vol4/p843-moerkotte.pdf)  
-- [x] [A Practical Approach to GroupJoin and Nested Aggregates](https://vldb.org/pvldb/vol14/p2383-fent.pdf)       
+- [x] [A Practical Approach to GroupJoin and Nested Aggregates](https://vldb.org/pvldb/vol14/p2383-fent.pdf)    
+- [] [Rethinking SIMD Vectorization for In-Memory Databases](https://moscow.sci-hub.se/4479/6a851a0f49e1bc97ab23d5b1fca25b3e/polychroniou2015.pdf)  
 
 ### Aggregate Operator
 

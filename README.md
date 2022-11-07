@@ -41,6 +41,7 @@ follow
 ## Query Execution model
 - [ ] Balancing Vectorized Query Execution with Bandwidth-Optimized Storage
 - [ ] [Morsel-Driven Parallelism: A NUMA-Aware Query Evaluation Framework for the Many-Core Age](https://15721.courses.cs.cmu.edu/spring2016/papers/p743-leis.pdf)  
+- [ ] [Interleaved Multi-Vectorizing](https://dl.acm.org/doi/abs/10.14778/3368289.3368290)  
 
 ## Operator Algo
 
@@ -105,3 +106,4 @@ follow
 - [ ] [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)   
 - [ ] [A Top-Down Method for Performance Analysis and Counters Architecture](https://ieeexplore.ieee.org/document/6844459)    
 - [ ] [TLSF: a New Dynamic Memory Allocator for Real-Time Systems∗](http://www.gii.upv.es/tlsf/files/ecrts04_tlsf.pdf)    
+- [ ] [To use or not to use the SIMD gather instruction](https://dl.acm.org/doi/abs/10.1145/3533737.3535089)  

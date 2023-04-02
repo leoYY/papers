@@ -54,13 +54,23 @@ Sampling 主要是通过perf record 来记录。
 
 参考 *[man perf-list](https://man7.org/linux/man-pages/man1/perf-list.1.html#EVENT_MODIFIERS)*
 
-### 如何制定Event
+### 如何指定Event
+可以理解perf list中预定了一部分事件，对于这种事件，我们可以方便的使用事件名来进行指定
+如
+```
+perf stat -e cache-miss...
+```
+但是对于某些情况perf中并未预先定义事件，这个时候CPU本身支持的情况下，就需要通过事件码与掩码的方式来指定监听事件，
+如
 ```
    perf stat -e cpu/event=0x3c,umask=0x0/,cpu/event=0xc5,umask=0x0/ ...
 ```
-
+其中事件码与掩码主要是表示事件码描述一类事件，而掩码具体描述该类事件中特定事件，如L2缓存读取事件与写入事件就属于相同事件码与不同掩码。  
 
 ## 3. 分析方法 ---- TMA
-
+// TODO
 # 再说Branch
+// TODO LBR，BTS
 
+# intel PT
+// TODO

@@ -1,12 +1,16 @@
 # PMC数据 CPU Profile  
 ## 概述  
-本文核心在于基于《Denis Bakhvalov - Performance Analysis and Tuning on Modern CPUs》这本书中的介绍，重新梳理相关知识。整体围绕一个问题，如何基于PMC数据做CPU性能分析。  
+本文核心在于基于《Denis Bakhvalov - Performance Analysis and Tuning on Modern CPUs》这本书中的介绍，重新梳理相关知识。整体围绕一个问题，如何基于PMU做CPU性能分析。  
 通过把这本书中介绍的信息以自己的理解重新做一遍解构。  
 后续文章逐个以问题出发，来逐渐把PMC数据的CPU profile相关技术介绍出来。  
 
-Performance Monitoring Unit 可以理解为CPU中的组件，如Branch Predictor Unit负责分之预测。
-Performance Monitoring Counter则是负责实际存储Performance Events数据的寄存器，类似的还有LBR，PEBS。
-Performance Counter，48bit长度，属于Model Specific Registers（MSR），不同CPU模型会有区别。
+### 相关名词  
+
+Performance Monitoring Unit 可以理解为CPU中负责性能检测的组件，如Branch Predictor Unit负责分之预测一样。  
+Performance Monitoring Counter基于计数触发分析性能事件的方法。  
+Performance Counter，48bit长度，属于Model Specific Registers（MSR），不同CPU模型会有区别。  
+PEBS Performance event-based sampling， 基于事件触发的分析性能方法。  
+LBR Last branch recording，记录分支指令机制。  
 
 ### Counter vs Sampling
 围绕Performance Profile，主要分为Counter 和 Sampling两种方式。  
@@ -29,10 +33,34 @@ Sampling 主要是通过perf record 来记录。
   1.2 记录instruction；   
   1.3 重制counter； 
 
-参考*Interrupt Event-Base Sampling[https://easyperf.net/blog/2018/06/08/Advanced-profiling-topics-PEBS-and-LBR]*
+参考*[Interrupt Event-Base Sampling](https://easyperf.net/blog/2018/06/08/Advanced-profiling-topics-PEBS-and-LBR)*
 
-2. PEBS如名字中event-based，在事件发生时通过独立CPU硬件单元记录发生事件的指令等信息记录到一段缓冲区中。
+2. PEBS如名字中event-based，在事件发生时通过独立CPU硬件单元记录发生事件的指令等信息记录到一段缓冲区中。 PEBS的缓冲区是有限缓冲区，当缓冲区满后会触发PMI来通知系统进行保存，同时缓冲期会随着新数据的写入覆盖老数据，保持缓冲区都是最新的内容。
 
-## 2. 如何设置PMC采集具体Events
+可以看到两种方式中，PEBS会先记录在通过PMI这样可以保证记录数据的准确，避免PMI处理过程中出现Skid的问题。  
 
-## 3. PEBS
+## 2. 如何设置采集具体Events实际操作    
+
+同样分为Counter 和 Sampling 两部分来看：  
+1. Counter部分，从上面采集原理我们知道主要是借助PMC来获取记录时间计数的寄存器值。
+```
+   perf stat -e event...
+```  
+2. Sampling部分
+```
+   perf record -e event...
+```
+对于perf record 默认不采用PEBS机制， 如果需要使用PEBS则需要类似:p, :pp的方式指定event。  
+
+参考 *[man perf-list](https://man7.org/linux/man-pages/man1/perf-list.1.html#EVENT_MODIFIERS)*
+
+### 如何制定Event
+```
+   perf stat -e cpu/event=0x3c,umask=0x0/,cpu/event=0xc5,umask=0x0/ ...
+```
+
+
+## 3. 分析方法 ---- TMA
+
+# 再说Branch
+

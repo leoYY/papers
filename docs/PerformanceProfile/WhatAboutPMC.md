@@ -33,7 +33,7 @@ Sampling 主要是通过perf record 来记录。
   1.2 记录instruction；   
   1.3 重制counter； 
 
-参考*[Interrupt Event-Base Sampling](https://easyperf.net/blog/2018/06/08/Advanced-profiling-topics-PEBS-and-LBR)*
+参考 _[Interrupt Event-Base Sampling](https://easyperf.net/blog/2018/06/08/Advanced-profiling-topics-PEBS-and-LBR)_
 
 2. PEBS如名字中event-based，在事件发生时通过独立CPU硬件单元记录发生事件的指令等信息记录到一段缓冲区中。 PEBS的缓冲区是有限缓冲区，当缓冲区满后会触发PMI来通知系统进行保存，同时缓冲期会随着新数据的写入覆盖老数据，保持缓冲区都是最新的内容。
 
@@ -52,7 +52,7 @@ Sampling 主要是通过perf record 来记录。
 ```
 对于perf record 默认不采用PEBS机制， 如果需要使用PEBS则需要类似:p, :pp的方式指定event。  
 
-参考 *[man perf-list](https://man7.org/linux/man-pages/man1/perf-list.1.html#EVENT_MODIFIERS)*
+参考 _[man perf-list](https://man7.org/linux/man-pages/man1/perf-list.1.html#EVENT_MODIFIERS)_
 
 ### 如何指定Event
 可以理解perf list中预定了一部分事件，对于这种事件，我们可以方便的使用事件名来进行指定

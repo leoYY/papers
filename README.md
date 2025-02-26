@@ -98,7 +98,8 @@ follow
 - [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)
 - [ ] [Rethinking SIMD Vectorization for In-Memory Databases]
 - [ ] Interleaved Multi-Vectorizing
-- [ ] FSST: Fast Random Access String Compression  
+- [ ] FSST: Fast Random Access String Compression
+- [ ] Relaxed Operator Fusion for In-Memory Databases: Making Compilation, Vectorization, and Prefetching Work Together At Last  
 
 # Resource Scheduler
 - [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

@@ -99,7 +99,8 @@ follow
 - [ ] [Rethinking SIMD Vectorization for In-Memory Databases]
 - [ ] Interleaved Multi-Vectorizing
 - [ ] FSST: Fast Random Access String Compression
-- [ ] Relaxed Operator Fusion for In-Memory Databases: Making Compilation, Vectorization, and Prefetching Work Together At Last  
+- [ ] Relaxed Operator Fusion for In-Memory Databases: Making Compilation, Vectorization, and Prefetching Work Together At Last
+- [ ] DSM vs. NSM: CPU Performance Tradeoffs in Block-Oriented Query Processing  
 
 # Resource Scheduler
 - [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

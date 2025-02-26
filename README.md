@@ -55,7 +55,9 @@ follow
 - [ ] [Adaptive Aggregation on Chip Multiprocessors](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.440.8800&rep=rep1&type=pdf)    
 - [ ] [Cache-Efficient Aggregation: Hashing Is Sorting](https://dl.acm.org/doi/pdf/10.1145/2723372.2747644)   
 - [ ] [Accelerating Aggregation using Intra-cycle Parallelism](https://www.semanticscholar.org/paper/Accelerating-aggregation-using-intra-cycle-Feng-Lo/4f3ba18bad4307a241378731b4c96a6899b56669)   
-- [ ] [High Throughput Heavy Hitter Aggregation for Modern SIMD Processors](http://www.cs.columbia.edu/~orestis/damon13.pdf)   
+- [ ] [High Throughput Heavy Hitter Aggregation for Modern SIMD Processors](http://www.cs.columbia.edu/~orestis/damon13.pdf)
+- [ ] IMD Vectorized Hashing for Grouped Aggregation
+- [ ] 
 
 
 ### Window Operator 
@@ -74,7 +76,8 @@ follow
 - [ ] [massively parallel sort-merge joins in main memory multi-core database systems](https://15721.courses.cs.cmu.edu/spring2018/papers/20-sortmergejoins/p1064-albutiu.pdf)   
 - [ ] [Main-Memory Hash Joins on Modern Processor Architectures](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6778794)   
 - [ ] [Multi-Way Hash Join Effectiveness](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.706.6219&rep=rep1&type=pdf)   
-- [ ] [Efficient Query Processing with Optimistically Compressed Hash Tables & Strings in the USSR](https://ir.cwi.nl/pub/30644/30644.pdf)  
+- [ ] [Efficient Query Processing with Optimistically Compressed Hash Tables & Strings in the USSR](https://ir.cwi.nl/pub/30644/30644.pdf)
+- [ ] Improving Hash Join Performance through Prefetching  
 
 ### Compiled
 - [ ] [Adaptive Code Generation for Data-Intensive Analytics](http://vldb.org/pvldb/vol14/p929-zhang.pdf)    
@@ -84,12 +87,18 @@ follow
 - [ ] [Merge Path - A Visually Intuitive Approach to Parallel Merging](https://arxiv.org/pdf/1406.2628.pdf)  
 
 ### Hash   
-- [ ] [SAHA: A String Adaptive Hash Table for Analytical Databases](https://www.mendeley.com/catalogue/18cb3527-49ec-39bd-aaa5-2f4de5df7898/)   
+- [ ] [SAHA: A String Adaptive Hash Table for Analytical Databases](https://www.mendeley.com/catalogue/18cb3527-49ec-39bd-aaa5-2f4de5df7898/)
+- [ ] SimdHT-Bench: Characterizing SIMD-Aware Hash Table Designs on Emerging CPU Architectures  
+- [ ] In-memory hash tables for accumulating text vocabularies
+
 
 ### No Classify
 - [ ] [Blink: Not Your Father’s Database!](https://link.springer.com/chapter/10.1007/978-3-642-33500-6_1)  
 - [ ] [DB2 with BLU Acceleration: So Much More than Just a Column Store](https://researcher.watson.ibm.com/researcher/files/us-ipandis/vldb13db2blu.pdf)    
-- [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)   
+- [ ] [Adaptive and Big Data Scale Parallel Execution in Oracle](http://www.vldb.org/pvldb/vol6/p1102-bellamkonda.pdf)
+- [ ] [Rethinking SIMD Vectorization for In-Memory Databases]
+- [ ] Interleaved Multi-Vectorizing
+- [ ] FSST: Fast Random Access String Compression  
 
 # Resource Scheduler
 - [ ] [非中心化调度 Sparrow: Distributed, Low Latency Scheduling](https://cs.stanford.edu/~matei/papers/2013/sosp_sparrow.pdf)  

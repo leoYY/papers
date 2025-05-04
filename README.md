@@ -90,6 +90,7 @@ follow
 - [ ] [SAHA: A String Adaptive Hash Table for Analytical Databases](https://www.mendeley.com/catalogue/18cb3527-49ec-39bd-aaa5-2f4de5df7898/)
 - [ ] SimdHT-Bench: Characterizing SIMD-Aware Hash Table Designs on Emerging CPU Architectures  
 - [ ] In-memory hash tables for accumulating text vocabularies
+- [ ] [Optimistically Compressed Hash Tables & Strings in the USSR](https://sigmodrecord.org/publications/sigmodRecord/2103/pdfs/16_och-gubner.pdf)
 
 
 ### No Classify
